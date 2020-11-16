@@ -8,7 +8,7 @@ const router = Router();
 //implementacion middleware para subir archivos
 router.use(fileUpload());
 
-router.put("/:tipo/:id", validarJWT, fileUploads);
+router.put('/:tipo/:id', validarJWT, fileUploads);
 
 router.get("/:tipo/:foto", retornaImagen);
 

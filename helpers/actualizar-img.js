@@ -18,11 +18,12 @@ const actualizarImagen = async (tipo, id, path, nombreArchivo) => {
         console.log("no se encontro nota con ese id");
         return false;
       }
-      pathViejo = `./uploads/medicos/${noticias.img}`;
+      
+      pathViejo = `./uploads/noticias/${noticias.imagen}`;
 
       borrarImagen(pathViejo);
 
-      noticias.img = nombreArchivo;
+      noticias.imagen = nombreArchivo;
       await noticias.save();
       return true;
 

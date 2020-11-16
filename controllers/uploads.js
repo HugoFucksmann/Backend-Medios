@@ -7,7 +7,7 @@ const { actualizarImagen } = require("../helpers/actualizar-img");
 const fileUploads = (req, res = response) => {
   const tipo = req.params.tipo;
   const id = req.params.id;
-
+  
   try {
     //validar tipos
     const tiposValidos = ["noticias"];
@@ -17,7 +17,7 @@ const fileUploads = (req, res = response) => {
         msg: "No es una noticia",
       });
     }
-
+    
     //validar que exista un archivo
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).json({
@@ -27,8 +27,11 @@ const fileUploads = (req, res = response) => {
     }
     //prosesar la img...
     const file = req.files.imagen; //files gracias al middleware
+
     const nombreCortado = file.name.split(".");
+        
     const extensionArchivo = nombreCortado[nombreCortado.length - 1]; //capturamos la extencion
+    
     //validar la extension
     const extensionesValidas = ["png", "jpg", "jpeg", "png"];
     if (!extensionesValidas.includes(extensionArchivo)) {
