@@ -5,10 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js",
-    "build": "cd public && npm run build",
-    "install-client": "cd public && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build"
+    "start": "node server.js"
   },
   "author": "colodev",
   "license": "ISC",
