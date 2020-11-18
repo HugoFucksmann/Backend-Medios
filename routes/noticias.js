@@ -15,7 +15,6 @@ router.post(
     check("titulo", "el titulo es obligatorio").notEmpty(),
     check("subtitulo", "el subtitulo es obligatorio").notEmpty(),
     check("texto", "el texto es obligatorio").notEmpty(),
-    check("imagen", "la imagen es obligatorio").notEmpty(),
     validarCampos,
   ],
   crearNoticia

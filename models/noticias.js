@@ -2,13 +2,19 @@ const { Schema, model } = require("mongoose");
 
 const NoticiasSchema = Schema(
   {
+    tema: {
+      type: String,
+      requered: true
+    },
     titulo: {
       type: String,
       required: true,
     },
     imagen: {
-      type: String,
-      required: true,
+      type: String
+    },
+    pieImagen:{
+      type: String
     },
     subtitulo: {
       type: String,
