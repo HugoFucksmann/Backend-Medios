@@ -43,7 +43,8 @@ const fileUploads = (req, res = response) => {
     //Generar nombre del archivo
     const nombreArchivo = `${uuidv4()}.${extensionArchivo}`;
     //Path para guardar la img
-    const path = `./uploads/${tipo}/${nombreArchivo}`;
+    const path = `./upload/${tipo}/${nombreArchivo}`;
+    console.log(path);
     //Mover la imagen
     file.mv(path, (err) => {
       if (err) {
