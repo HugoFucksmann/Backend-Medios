@@ -14,7 +14,7 @@ app.use(express.static("public"));
 app.use('/api/usu', require('./routes/usuarios'));
 app.use("/api/login", require("./routes/auth"));
 app.use('/api/noticias', require('./routes/noticias'));
-app.use("/api/upload", require("./routes/uploads"));
+app.use("/api/uploads", require("./routes/uploads"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "public/index.html"));
