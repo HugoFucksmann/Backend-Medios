@@ -12,9 +12,12 @@ router.post(
   "/",
   [
     validarJWT,
+    check("tipo", "el tipo es obligatorio").notEmpty(),
     check("titulo", "el titulo es obligatorio").notEmpty(),
     check("subtitulo", "el subtitulo es obligatorio").notEmpty(),
+    check("pieDeFoto", "el pie de foto es obligatorio").notEmpty(),
     check("texto", "el texto es obligatorio").notEmpty(),
+
     validarCampos,
   ],
   crearNoticia

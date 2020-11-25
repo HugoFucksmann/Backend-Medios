@@ -1,0 +1,5 @@
+
+
+const getCovid = () => {
+    return 'covid!!!'
+}

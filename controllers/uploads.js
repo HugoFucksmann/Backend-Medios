@@ -26,25 +26,21 @@ const fileUploads = (req, res = response) => {
       });
     }
     //prosesar la img...
-    const file = req.files.imagen; //files gracias al middleware
-
+    const file = req.files.imagen; // middleware en rutas
     const nombreCortado = file.name.split(".");
-        
     const extensionArchivo = nombreCortado[nombreCortado.length - 1]; //capturamos la extencion
     
     //validar la extension
-    const extensionesValidas = ["png", "jpg", "jpeg", "png"];
+    const extensionesValidas = ["png", "jpg", "jpeg"];
     if (!extensionesValidas.includes(extensionArchivo)) {
       return res.status(400).json({
         ok: false,
         msg: "No es una extension valida",
       });
     }
-    //Generar nombre del archivo
-    const nombreArchivo = `${uuidv4()}.${extensionArchivo}`;
-    //Path para guardar la img
+    
+    const nombreArchivo = `${uuidv4()}.${extensionArchivo}`;   
     const path = `./upload/${tipo}/${nombreArchivo}`;
-    console.log(path);
     //Mover la imagen
     file.mv(path, (err) => {
       if (err) {

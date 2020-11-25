@@ -29,7 +29,7 @@ const login = async (req, res) => {
     }
     
     const token = await generarJWT(usuarioDB.id);
-    console.log(token);
+    
     res.json({
       ok: true,
       token
