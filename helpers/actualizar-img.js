@@ -1,5 +1,6 @@
 const fs = require("fs");
-const Noticias = require('../models/noticias');
+const Noticias  = require('../models/noticias');
+
 
 const borrarImagen = (path) => {
   if (fs.existsSync(path)) {
@@ -7,24 +8,24 @@ const borrarImagen = (path) => {
     fs.unlinkSync(path);
   }
 };
-
+//al ser async devuelve promesa
 const actualizarImagen = async (tipo, id, path, nombreArchivo) => {
   let pathViejo = "";
 
   switch (tipo) {
     case "noticias":
-      const noticias = await Noticias.findById(id);
-      if (!noticias) {
-        console.log("no se encontro nota con ese id");
+      const noticia = await Noticias.findById(id);
+      if (!noticia) {
+        console.log("no se encontro noticia con ese id");
         return false;
       }
-      
-      pathViejo = `./uploads/noticias/${noticias.imagen}`;
+
+      pathViejo = `../uploads/noticias/${noticia.imagen}`;
 
       borrarImagen(pathViejo);
 
-      noticias.imagen = nombreArchivo;
-      await noticias.save();
+      noticia.imagen = nombreArchivo;
+      await noticia.save();
       return true;
 
       break;

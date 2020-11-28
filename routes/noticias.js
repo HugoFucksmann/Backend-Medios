@@ -8,8 +8,7 @@ const router = Router();
 
 router.get('/', getNoticias);
 
-router.post(
-  "/",
+router.post("/",
   [
     validarJWT,
     check("tipo", "el tipo es obligatorio").notEmpty(),
@@ -17,7 +16,7 @@ router.post(
     check("subtitulo", "el subtitulo es obligatorio").notEmpty(),
     check("pieDeFoto", "el pie de foto es obligatorio").notEmpty(),
     check("texto", "el texto es obligatorio").notEmpty(),
-
+    check("fecha", "la fecha es necesaria"),
     validarCampos,
   ],
   crearNoticia

@@ -26,6 +26,10 @@ const NoticiasSchema = Schema(
       type: String,
       required: true,
     },
+    fecha: {
+      type: String,
+      requered: true
+    }
   },
   { collection: "noticias" }
 );

@@ -7,10 +7,11 @@ const { actualizarImagen } = require("../helpers/actualizar-img");
 const fileUploads = (req, res = response) => {
   const tipo = req.params.tipo;
   const id = req.params.id;
-  
+
   try {
     //validar tipos
-    const tiposValidos = ["noticias"];
+    const tiposValidos = "noticias";
+   
     if (!tiposValidos.includes(tipo)) {
       return res.status(400).json({
         ok: false,
@@ -25,23 +26,26 @@ const fileUploads = (req, res = response) => {
         msg: "no hay ningun archivo subido",
       });
     }
+
     //prosesar la img...
     const file = req.files.imagen; // middleware en rutas
     const nombreCortado = file.name.split(".");
     const extensionArchivo = nombreCortado[nombreCortado.length - 1]; //capturamos la extencion
-    
+
     //validar la extension
     const extensionesValidas = ["png", "jpg", "jpeg"];
+
     if (!extensionesValidas.includes(extensionArchivo)) {
       return res.status(400).json({
         ok: false,
         msg: "No es una extension valida",
       });
     }
+
+    const nombreArchivo = `${uuidv4()}.${extensionArchivo}`;
+    const path = `./uploads/${tipo}/${nombreArchivo}`; //para guardar la img
+
     
-    const nombreArchivo = `${uuidv4()}.${extensionArchivo}`;   
-    const path = `./upload/${tipo}/${nombreArchivo}`;
-    //Mover la imagen
     file.mv(path, (err) => {
       if (err) {
         console.log(err);
@@ -50,21 +54,26 @@ const fileUploads = (req, res = response) => {
           msg: "Error al mover la imagen",
         });
       }
+
       // Actualizar base de datos
       actualizarImagen(tipo, id, path, nombreArchivo);
+
       res.json({
         ok: true,
         msg: "archivo subido con exito",
         nombreArchivo,
       });
     });
+    
+   
+    
   } catch (error) {
     console.log(error);
     res.status(500).json({
       ok: false,
       msg: "error que no deberia pasar",
     });
-  }
+  } 
 };
 
 const retornaImagen = (req, res = response) => {
